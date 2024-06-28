@@ -1,3 +1,4 @@
-# agenda
+# Flutter architecture talk 
 
-A new Flutter project.
+This app demonstrates how to implement Model-View-ViewModel in
+Flutter, using primitives from the framework.
