@@ -2,3 +2,5 @@
 
 This app demonstrates how to implement Model-View-ViewModel in
 Flutter, using primitives from the framework.
+
+![screenshot](.assets/screenshot.png)
