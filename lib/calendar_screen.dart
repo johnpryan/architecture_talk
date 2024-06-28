@@ -1,11 +1,13 @@
 import 'package:agenda/calendar_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'event.dart';
 import 'event_data.dart';
 import 'event_view.dart';
 
 final double _defaultHeight = 50;
+final _dateFormat = DateFormat.yMMMMEEEEd();
 
 class CalendarScreen extends StatelessWidget {
   const CalendarScreen({super.key});
@@ -41,25 +43,60 @@ class _CalendarViewState extends State<_CalendarView> {
   }
 
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              for (var i = 0; i < 24; i++) ...[
-                SizedBox(
-                  height: _defaultHeight,
+    return ListenableBuilder(
+      listenable: _viewModel,
+      builder: (context, child) {
+        return Column(
+          children: [
+            Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.keyboard_arrow_left),
+                  onPressed: () {
+                    _viewModel.goToPreviousDay();
+                  },
                 ),
-                Divider(
-                  color: Colors.grey.shade400,
-                  height: 0,
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      _dateFormat.format(_viewModel.currentDate),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.keyboard_arrow_right),
+                  onPressed: () {
+                    _viewModel.goToNextDay();
+                  },
                 ),
               ],
-            ],
-          ),
-          for (var event in _viewModel.events) _PositionedEvent(event: event)
-        ],
-      ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    Column(
+                      children: [
+                        for (var i = 0; i < 24; i++) ...[
+                          SizedBox(
+                            height: _defaultHeight,
+                          ),
+                          Divider(
+                            color: Colors.grey.shade400,
+                            height: 0,
+                          ),
+                        ],
+                      ],
+                    ),
+                    for (var event in _viewModel.events)
+                      _PositionedEvent(event: event)
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

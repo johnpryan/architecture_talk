@@ -11,9 +11,14 @@ class EventData {
 }
 
 Iterable<Event> _createMockData() sync* {
-  var names = ['Morning routine', 'Breakfast', 'Commute'];
+  var names = [
+    'Flutter für Einsteiger',
+    'UI-Design mit Flutter',
+    'Architektur'
+  ];
   var startTime = DateTime.now().copyWith(hour: 8, minute: 0, microsecond: 0);
   final oneHour = Duration(hours: 1);
+  final oneDay = Duration(days: 1);
 
   for (var name in names) {
     yield Event(
@@ -21,6 +26,6 @@ Iterable<Event> _createMockData() sync* {
       start: startTime,
       end: startTime.add(oneHour),
     );
-    startTime = startTime.add(oneHour);
+    startTime = startTime.add(oneDay);
   }
 }
