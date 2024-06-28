@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(AgendaApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class AgendaApp extends StatelessWidget {
+  AgendaApp({super.key});
 
-  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Agenda'),),
+      body: Center(
+        child: Text("Hello, World!"),
       ),
     );
   }
