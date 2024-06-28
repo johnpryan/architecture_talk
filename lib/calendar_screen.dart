@@ -35,10 +35,14 @@ class _CalendarView extends StatefulWidget {
 
 class _CalendarViewState extends State<_CalendarView> {
   late final CalendarViewModel _viewModel;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     _viewModel = CalendarViewModel(widget.eventData);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.jumpTo(_defaultHeight * 6);
+    });
     super.initState();
   }
 
@@ -73,6 +77,7 @@ class _CalendarViewState extends State<_CalendarView> {
             ),
             Expanded(
               child: SingleChildScrollView(
+                controller: _scrollController,
                 child: Stack(
                   children: [
                     Column(
