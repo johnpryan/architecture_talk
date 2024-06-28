@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'calendar_view.dart';
+import 'calendar_screen.dart';
 
 void main() {
   runApp(AgendaApp());
@@ -11,7 +11,7 @@ class AgendaApp extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CalendarView(),
+      home: CalendarScreen(),
     );
   }
 }

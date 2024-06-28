@@ -17,7 +17,6 @@ class EventView extends StatelessWidget {
     required this.color,
   });
 
-  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
